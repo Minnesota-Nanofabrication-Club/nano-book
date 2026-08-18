@@ -1,3 +1,9 @@
+> ### 🔬 Minnesota Nanofabrication Club
+> New here? Start at the club website — what we're building, current projects, and how to join:
+> **https://minnesota-nanofabrication-club.github.io/club_website/**
+
+---
+
 # ASIC Network docs template
 
 Fork this repo to start a new docs book for the network. It's a plain
