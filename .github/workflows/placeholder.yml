@@ -1,0 +1,68 @@
+# Publishes a single "under construction" placeholder page to GitHub Pages
+# INSTEAD OF the full mdBook.
+#
+# This is toggled by the repository variable SITE_MODE:
+#   Settings > Secrets and variables > Actions > Variables > New variable
+#     Name:  SITE_MODE
+#     Value: placeholder
+#
+# While SITE_MODE == "placeholder":
+#   - this workflow deploys .github/pages/construction.html to every route
+#   - deploy.yml (the real mdBook build) skips itself
+# Remove or change the variable to go back to publishing the book.
+#
+# Local development is unaffected either way: `mdbook serve` / `mdbook build`
+# still render the full book.
+name: Deploy placeholder site to Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Shares the "pages" concurrency group with deploy.yml so the two never
+# race each other.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: vars.SITE_MODE == 'placeholder'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Assemble placeholder site
+        run: |
+          mkdir -p _site
+          cp .github/pages/construction.html _site/index.html
+          # Serve the same page for every other path (e.g. /sputterer/sputterer.html).
+          # GitHub Pages returns 404.html for any path that has no file.
+          cp .github/pages/construction.html _site/404.html
+
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
+
+  deploy:
+    if: vars.SITE_MODE == 'placeholder'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
