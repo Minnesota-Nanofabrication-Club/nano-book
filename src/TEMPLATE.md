@@ -1,5 +1,5 @@
 <!--
-  ASIC Network docs template. to add a page:
+  Page template. To add a page:
   1. copy this file to src/your-page-slug.md (kebab-case, describes the page)
   2. replace the "# Title" below: that heading becomes the page title
   3. add it to src/SUMMARY.md wherever it belongs in the reading order
@@ -51,4 +51,4 @@ echo "hello"
 
 ---
 
-*Questions? Ask in the network Discord.*
+*Questions? Ask in the club Discord.*
