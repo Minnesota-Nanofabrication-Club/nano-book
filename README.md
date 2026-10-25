@@ -4,15 +4,16 @@
 
 ---
 
-# ASIC Network docs template
+# Nano Book: the club's documentation
 
-Fork this repo to start a new docs book for the network. It's a plain
-[mdBook](https://rust-lang.github.io/mdBook/) with the ASIC Network look
-applied via `theme/` — no build tooling to install for writing, just markdown.
+How every machine in the Minnesota Nanofabrication Club's fab works, how it
+is built, and how to help. It is a plain
+[mdBook](https://rust-lang.github.io/mdBook/): every page is a Markdown file
+in `src/`, and the site rebuilds itself when you push to `main`.
 
-`theme/` is a **git submodule** (see [asic-network-docs/theme](../theme)),
-not a copy — the visual layer is shared and versioned separately from any
-one book's content. Clone with submodules:
+Content and styling are kept apart. This repository is only content; the look
+lives in `theme/`, a **git submodule** pointing at the theme repository.
+Clone with it:
 
 ```
 git clone --recurse-submodules <this-repo-url>
@@ -20,43 +21,49 @@ git clone --recurse-submodules <this-repo-url>
 git submodule update --init
 ```
 
-To change how a book looks without touching its content, point the
-submodule at a different theme commit/branch (see the theme repo's README).
-
-## Set up a new book
-
-1. Fork/copy this repo, rename it to `<your-track>-tutorials`.
-2. In `book.toml`, replace every `EDIT ME` value (title, repo URL).
-3. In `theme/header.hbs`, check the "Home" link points at the right main site.
-4. GitHub repo settings → **Pages** → **Source: GitHub Actions** (one-time, per repo).
-5. Write your first page (`src/TEMPLATE.md` → copy it, fill it in, add it to
-   `src/SUMMARY.md`), push to `main`. The included workflow builds and deploys
-   on every push.
-
 ## Writing pages
 
 - One `src/*.md` file per page. Copy `src/TEMPLATE.md` to start a new one.
-- List pages, in order, in `src/SUMMARY.md` — nesting/sections are supported,
-  see [mdBook's SUMMARY.md format](https://rust-lang.github.io/mdBook/format/summary.html).
-- Link between pages with plain relative links: `[text](other-page.md)`.
-- Images live under `src/img/`, referenced relative to the page: `img/foo.png`.
-- Raw HTML is allowed (e.g. `<iframe>` embeds for interactive content) —
-  unlike the old renderer, mdBook doesn't strip it.
+- List pages, in order, in `src/SUMMARY.md`. `# Gen One Fab`-style lines
+  are the sidebar's section headings.
+- Link between pages with relative links: `[text](other-page.md)`.
+- Images live under `src/img/`, referenced relative to the page.
+- Raw HTML is allowed (for example an `<iframe>` embed).
+
+## Machine pages match the website
+
+The club website links each machine card to
+`<docs address>/machines/<machine file name>.html`. So a machine's page here
+is `src/machines/<same name as the website's content/machines/ file>.md`.
+Add or rename a machine on the website, and do the same here. Most machine
+pages are stubs (a one-line summary and a "Stub" note) until someone writes
+them.
+
+The website's footer also links `getting-started.html` and
+`contributing.html`, so keep those two pages.
+
+Pages that moved keep working through `[output.html.redirect]` in
+`book.toml`.
 
 ## Preview locally
+
+Install mdBook **0.5.x** (the theme needs it; CI uses 0.5.3), then:
 
 ```
 mdbook serve
 ```
 
-Open `http://localhost:3000`. Rebuilds on save.
+Open `http://localhost:3000`. It rebuilds on save.
 
-## Why mdBook
+## Publishing
 
-Every book built from this template reads plain CommonMark markdown plus one
-manifest file (`SUMMARY.md`) — no ASIC-Network-specific syntax or link
-conventions. That means the same source files also build cleanly with
-`mdbook build` on their own, standalone, on any machine or any other site,
-and can be composed into a larger "collection" book (multiple universities'
-docs combined into one navigation) by pulling their `src/` directories in
-and generating a combined `SUMMARY.md` — without touching their content.
+`.github/workflows/deploy.yml` builds and deploys to GitHub Pages on every
+push to `main` (Settings → Pages → Source: GitHub Actions, once). To show an
+"under construction" page instead, set the repository variable
+`SITE_MODE` to `placeholder` (see `.github/workflows/placeholder.yml`).
+
+## Moving from staging to the club's repositories
+
+`book.toml` (`git-repository-url`, `edit-url-template`, `site-url`) and
+`.gitmodules` (the theme URL) point at the staging forks. Change them to the
+club's repositories, and change the website address in `theme/header.hbs`.

@@ -8,11 +8,11 @@ src = "src"
 create-missing = false
 
 [output.html]
-git-repository-url = "https://github.com/ASIC-Network/EDIT-ME-repo-name"
-edit-url-template = "https://github.com/ASIC-Network/EDIT-ME-repo-name/edit/main/{path}"
-additional-css = ["theme/asic-network.css"]
-additional-js = ["theme/asic-network.js"]
-site-url = "/EDIT-ME-repo-name/"
+git-repository-url = "https://github.com/beastr45/nano-book_staging"
+edit-url-template = "https://github.com/beastr45/nano-book_staging/edit/main/{path}"
+additional-css = ["theme/nanofab.css"]
+additional-js = ["theme/nanofab.js"]
+site-url = "/nano-book_staging/"
 input-404 = "404.md"
 default-theme = "light"
 preferred-dark-theme = "light"
@@ -30,3 +30,12 @@ runnable = false
 enable = true
 limit-results = 20
 use-boolean-and = true
+
+# Pages that moved when the machine pages were renamed to match the
+# website (docsURL + "machines/<machine file name>.html").
+[output.html.redirect]
+"/sputterer/sputterer.html" = "../machines/sputterer.html"
+"/stepper/stepper.html" = "../machines/maskless-stepper.html"
+"/furnace/furnace.html" = "../machines/tube-furnace.html"
+"/spin-coater/spin-coater.html" = "../machines/spinner.html"
+"/cleanroom/cleanroom.html" = "../machines/cleanroom-microenvironment.html"
