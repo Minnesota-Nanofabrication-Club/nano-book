@@ -7,7 +7,7 @@
 #     Value: placeholder
 #
 # While SITE_MODE == "placeholder":
-#   - this workflow deploys .github/pages/construction.html to every route
+#   - this workflow deploys src/construction.html to every route
 #   - deploy.yml (the real mdBook build) skips itself
 # Remove or change the variable to go back to publishing the book.
 #
@@ -41,10 +41,10 @@ jobs:
       - name: Assemble placeholder site
         run: |
           mkdir -p _site
-          cp .github/pages/construction.html _site/index.html
+          cp src/construction.html _site/index.html
           # Serve the same page for every other path (e.g. /sputterer/sputterer.html).
           # GitHub Pages returns 404.html for any path that has no file.
-          cp .github/pages/construction.html _site/404.html
+          cp src/construction.html _site/404.html
 
       - name: Setup Pages
         id: pages
