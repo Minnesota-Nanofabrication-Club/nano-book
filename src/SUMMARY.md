@@ -37,6 +37,9 @@
 - [Dopant Synthesis](machines/dopant-synthesis.md)
 - [Polymer Synthesis](machines/polymer-synthesis.md)
 
+# Extra
+- [Trebuchet](machines/trebuchet.md)
+
 ---
 
 [Contributing](contributing.md)
