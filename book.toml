@@ -16,6 +16,10 @@ site-url = "/nano-book_staging/"
 input-404 = "404.md"
 default-theme = "light"
 preferred-dark-theme = "light"
+mathjax-support = true
+
+[output.html.code.hidelines]
+python = "~"
 
 [output.html.fold]
 enable = true
