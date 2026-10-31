@@ -8,8 +8,8 @@ src = "src"
 create-missing = false
 
 [output.html]
-git-repository-url = "https://minnesota-nanofabrication-club.github.io/nano-book/"
-edit-url-template = "https://minnesota-nanofabrication-club.github.io/nano-book/edit/main/{path}"
+git-repository-url = "https://github.com/Minnesota-Nanofabrication-Club/nano-book"
+edit-url-template = "https://github.com/Minnesota-Nanofabrication-Club/nano-book/edit/main/{path}"
 additional-css = ["theme/nanofab.css"]
 additional-js = ["theme/nanofab.js"]
 site-url = "/nano-book_staging/"
