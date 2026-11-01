@@ -3,7 +3,6 @@
 > **https://minnesota-nanofabrication-club.github.io/club_website/**
 
 ---
-lorem ipsum dolor sit amet
 
 # Nano Book: the club's documentation
 
