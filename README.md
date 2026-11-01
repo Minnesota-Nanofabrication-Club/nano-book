@@ -1,6 +1,6 @@
 > ### 🔬 Minnesota Nanofabrication Club
 > New here? Start at the club website — what we're building, current projects, and how to join:
-> **https://minnesota-nanofabrication-club.github.io/club_website/**
+> **https://minnesota-nanofabrication-club.github.io/nanofab_web/**
 
 ---
 
@@ -66,4 +66,5 @@ push to `main` (Settings → Pages → Source: GitHub Actions, once). To show an
 
 `book.toml` (`git-repository-url`, `edit-url-template`, `site-url`) and
 `.gitmodules` (the theme URL) point at the staging forks. Change them to the
-club's repositories, and change the website address in `theme/header.hbs`.
+club's repositories. The website address in `theme/header.hbs` already
+points at the club's website.
