@@ -43,3 +43,4 @@
 ---
 
 [Contributing](contributing.md)
+[New member onboarding](new-member-onboarding.md)
